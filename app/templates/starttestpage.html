@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .btn {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 15px;
+        padding: 15px 40px;
+        cursor: pointer;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .btn-start {
+        background-color: rgb(72, 220, 67);
+      }
+
+      .btn-logout {
+        background-color:rgb(226, 38, 21);
+      }
+
+      .btn:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="button-container">
+        <a href="{% url 'showquestions' %}" class="btn btn-start">Start Your Test</a>
+        <a href="{% url 'logout' %}" class="btn btn-logout">Logout</a>
+      </div>
+    </div>
+  </body>
+</html>

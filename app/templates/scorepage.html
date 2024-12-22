@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Score Page</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <style>
+      /* Reset some default browser styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body and general layout */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      /* Score page container */
+      .score-page-container {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      /* Title of the score */
+      .score-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      /* Displaying the score */
+      .score {
+        background-color: #4caf50;
+        color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        font-size: 1.5rem;
+      }
+
+      /* Buttons */
+      .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        opacity: 0.9;
+      }
+
+      .btn-analyse {
+        background-color: #2196f3;
+        color: #fff;
+      }
+
+      .btn-analyse:hover {
+        background-color: #0b7dda;
+      }
+
+      .btn-download {
+        background-color: #ffc107;
+        color: #fff;
+      }
+
+      .btn-download:hover {
+        background-color: #ffb300;
+      }
+
+      .btn-logout {
+        background-color: #f44336;
+        color: #fff;
+      }
+
+      .btn-logout:hover {
+        background-color: #d32f2f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="score-page-container">
+      <div class="score-box">
+        <div class="actions">
+          <div class="btn btn-analyse">
+            <a
+              style="text-decoration: none; color: white"
+              href="{% url 'analyse' %}"
+              >Analyse Score and Download Report</a
+            >
+          </div>
+          {% comment %} <div class="btn btn-download">
+            <a
+              style="text-decoration: none; color: white"
+              href="#"
+              >Download Report</a
+            >
+          </div> {% endcomment %}
+          <div class="btn btn-logout">
+            <a
+              style="text-decoration: none; color: white"
+              href="{% url 'logout' %}"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

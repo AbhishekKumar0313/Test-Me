@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .container {
+        height: 100vh;
+      }
+      .card {
+        margin: 20px 0;
+      }
+      .submit-btn {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .submit-btn:disabled {
+        cursor: not-allowed;
+    }
+    .submit-btn span {
+        position: relative;
+        z-index: 1;
+    }
+    .submit-btn.loading::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+        animation: moveShades 1.5s infinite linear;
+        z-index: 0;
+    }
+    @keyframes moveShades {
+        from {
+            left: -100%;
+        }
+        to {
+            left: 100%;
+        }
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container d-flex justify-content-center align-items-center">
+      <div class="card p-4 shadow" style="width: 500px">
+        <h3 class="text-center mb-4">Welcome, {{ username }}!</h3>
+
+        <!-- Upload Options -->
+        <div class="mb-4">
+          <h5>Upload Your Content</h5>
+          <form method="POST" enctype="multipart/form-data" action="#">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="content" class="form-label">Enter Content</label>
+              <textarea
+                class="form-control"
+                id="content"
+                name="content"
+                rows="4"
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="file" class="form-label">Or Upload a File</label>
+              <input type="file" class="form-control" id="file" name="file" />
+            </div>
+            <button type="submit" id="submitButton" class="btn submit-btn btn-primary w-100"><span>Submit</span></button>
+            {% if error %}
+            <p class="text-danger">{{ error }}</p>
+            {% endif %}
+          </form>
+        </div>
+        <!-- Logout Button -->
+        <div class="d-flex justify-content-between">
+          <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const submitButton = document.getElementById('submitButton');
+
+        submitButton.addEventListener('click', function () {
+            // Change button text
+            submitButton.disabled = false; // Disable the button
+            submitButton.querySelector('span').textContent = 'Analyzing your content...';
+            submitButton.classList.add('loading');
+            // Simulate a loading delay
+            setTimeout(() => {
+                submitButton.querySelector('span').textContent = 'Submit'; // Reset text
+                submitButton.disabled = false;
+                submitButton.classList.remove('loading'); // Re-enable the button
+            }, 45000); // Adjust delay time as needed
+        });
+
+
+
+    </script>
+  </body>
+</html>
